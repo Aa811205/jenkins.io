@@ -14181,7 +14181,7 @@
         references:
           - issue: 67724
           - url: https://github.com/jenkinsci/packaging/pull/278
-            title: pull 278
+            title: pull 278 (packaging)
         message: |-
           Allow Debian package to start when <code>JAVA_ARGS</code> contains spaces.
 
@@ -14710,7 +14710,7 @@
         pr_title: Fixes MSI Parameters Port and InstallDir
         references:
           - url: https://github.com/jenkinsci/packaging/pull/287
-            title: pull 287
+            title: pull 287 (packaging)
         message: |-
           Honor MSI installer parameter values for <code>PORT</code> and <code>INSTALLDIR</code>.
       - type: rfe
@@ -14803,7 +14803,7 @@
         references:
           - issue: 68007
           - url: https://github.com/jenkinsci/packaging/pull/296
-            title: Packaging pull request 296
+            title: pull 296 (packaging)
         message: |-
           Prefer <code>--httpPort</code> from <code>JENKINS_ARGS</code> over <code>HTTP_PORT</code> when the two differ.
       - type: bug
@@ -15072,7 +15072,7 @@
         references:
           - issue: 68170
           - url: https://github.com/jenkinsci/packaging/pull/306
-            title: pull 306
+            title: pull 306 (packaging)
         message: |-
           Show warning dialog if Java 8 is selected in Windows installer.
       - type: bug
@@ -20692,7 +20692,7 @@
   # pull: 8225 (PR title: Update dependency eslint to v8.44.0)
 
   - version: '2.414'
-    date: 2023-07-10
+    date: 2023-07-11
     changes:
       - type: major rfe
         category: major rfe
@@ -20832,6 +20832,191 @@
   # pull: 8275 (PR title: Bump jenkins-test-harness from 2034.v41c9cb_349299 to 2042.v787a_641a_9b_26)
   # pull: 8276 (PR title: Bump matrix-auth from 3.1.9 to 3.1.10)
   # pull: 8277 (PR title: Update dependency eslint to v8.45.0)
+
+  - version: '2.416'
+    date: 2023-07-26
+    changes:
+      - type: security
+        message: Important security fix.
+        references:
+          - url: /security/advisory/2023-07-26/
+            title: security advisory
+
+  - version: '2.417'
+    date: 2023-08-01
+    changes:
+      - type: rfe
+        category: rfe
+        pull: 8299
+        authors:
+          - jglick
+        pr_title: Simpler `Jenkins.getComputers`
+        message: |-
+          Small optimization in computer list.
+      - type: rfe
+        category: rfe
+        pull: 8265
+        issue: 71054
+        authors:
+          - yaroslavafenkin
+        pr_title: "[JENKINS-71054] Remove the treeview option for artifactList"
+        message: |-
+          Remove the treeview option for artifactList.
+      - type: rfe
+        category: rfe
+        pull: 8193
+        authors:
+          - basil
+        pr_title: Remove `java.desktop/com.sun.beans.introspect` from `Add-Opens`
+        message: |-
+          Remove a workaround that was only necessary for OpenJDK 11.0.16 and earlier.
+      - type: rfe
+        category: rfe
+        pull: 8180
+        authors:
+          - mawinter69
+          - NotMyFault
+        pr_title: Move 'expandableTextbox' to a jenkins-button
+        message: |-
+          Use new jenkins-button styling for <code>'expandableTextbox'</code> button.
+      - type: rfe
+        category: rfe
+        pull: 8283
+        authors:
+          - meiswjn
+        pr_title: Add logging for agent usage by job
+        message: |-
+          Log agent usage by job.
+      - type: rfe
+        category: rfe
+        pull: 8262
+        issue: 71496
+        authors:
+          - mawinter69
+        pr_title: "[JENKINS-71496] Make tab pane selection reachable via keyboard"
+        message: |-
+          Make tab panes accessible via keyboard.
+      - type: rfe
+        category: rfe
+        authors:
+          - philfry
+        pr_title: "RPM: Remove System V initialization script"
+        references:
+          - url: https://github.com/jenkinsci/packaging/pull/409
+            title: pull 409 (packaging)
+          - url: https://www.jenkins.io/blog/2022/03/25/systemd-migration/
+            title: Linux install packages migrated from System V init to systemd
+        message: |-
+          Remove System V initialization scripts from RPM based installers.
+          The System V initialization scripts were replaced in March 2022 with systemd initialization.
+          RPM users with a custom log directory no longer have a <code>logrotate(8)</code> configuration out-of-the-box.
+      - type: rfe
+        category: rfe
+        pull: 8273
+        issue: 71366
+        authors:
+          - mattpulver
+        pr_title: "[JENKINS-71366] Set sandbox allow-same-origin in DEFAULT_CSP_VALUE."
+        message: |-
+          Add <code>allow-same-origin</code> to the <code>sandbox</code> ContentSecurityPolicy directive of workspace and artifact browsers if the Resource Root URL feature is not used.
+          Allow requests to resources like stylesheets and images, even if a reverse proxy prohibits cross-site requests.
+      - type: bug
+        category: bug
+        pull: 8288
+        issue: 71186
+        authors:
+          - programbeginnerTW
+        pr_title: "[JENKINS-71186] - Avoid a warning from web application scanners"
+        message: |-
+          Add the <code>X-Content-Type-Options</code> HTTP header to the response from the agent listener.
+          Silence security scanners that incorrectly report an issue when the HTTP header is missing.
+      - type: bug
+        category: bug
+        pull: 8293
+        issue: 71698
+        authors:
+          - timja
+        pr_title: "[JENKINS-71698] Only disable plugin manager button if none are\
+          \ selected"
+        message: |-
+          Only disable the plugin manager "install" button if no plugins are selected (regression in 2.414).
+
+  # pull: 8211 (PR title: [JENKINS-71052] CSP compatibility: SetupWizard/wizard-ui.jelly)
+  # pull: 8244 (PR title: Update to Prettier 3 and add trailing commas)
+  # pull: 8259 (PR title: Flake in `ExecutorTest.disconnectCause`)
+  # pull: 8278 (PR title: Add missing `application/x-www-form-urlencoded` header)
+  # pull: 8279 (PR title: Pass POST parameters in body rather than query string)
+  # pull: 8280 (PR title: `ReverseProxySetupMonitor` changed from POST to GET)
+  # pull: 8281 (PR title: Bump spring-security-bom from 5.8.4 to 5.8.5)
+  # pull: 8282 (PR title: Post LTS pre-releases to discourse and dev mailing list)
+  # pull: 8287 (PR title: Update dependency webpack to v5.88.2)
+  # pull: 8290 (PR title: Add French translation for Build Step string)
+  # pull: 8292 (PR title: Update dependency stylelint to v15.10.2)
+  # pull: 8294 (PR title: Update dependency node to v18.17.0)
+  # pull: 8295 (PR title: Update dependency sass to v1.64.1)
+  # pull: 8296 (PR title: Update dependency postcss to v8.4.27)
+  # pull: 8298 (PR title: Bump org.jenkins-ci.plugins:credentials from 1254.vb_96f366e7b_a_d to 1271.v54b_1c2c6388a_)
+  # pull: 8300 (PR title: Remove invalid Japanese mailing list URL)
+  # pull: 8302 (PR title: Update dependabot branch for LTS 2.414.x)
+  # pull: 8303 (PR title: `DescribableList.replace` called `Saveable.save` twice)
+  # pull: 8306 (PR title: Label LTS PRs automatically)
+  # pull: 8307 (PR title: `replaceDescription` is not robust)
+  # pull: 8308 (PR title: Update dependency postcss-preset-env to v9.1.0)
+  # pull: 8309 (PR title: Flake in `AbstractBuildTest.workspaceLock`)
+  # pull: 8311 (PR title: Add many french translations for plugins manager)
+  # pull: 8312 (PR title: Update dependency eslint-config-prettier to v8.9.0)
+  # pull: 8315 (PR title: Bump com.puppycrawl.tools:checkstyle from 10.12.1 to 10.12.2)
+  # pull: 8316 (PR title: Update dependency eslint to v8.46.0)
+  # pull: 8317 (PR title: Bump org.jenkins-ci.main:jenkins-test-harness from 2042.v787a_641a_9b_26 to 2044.v03c87927ff5c)
+
+  - version: '2.418'
+    date: 2023-08-08
+    changes:
+      - type: bug
+        category: regression
+        pull: 8341
+        issue: 71238
+        authors:
+          - janfaracik
+        pr_title: "[JENKINS-71238] New login page breaks `login-theme-plugin`"
+        message: |-
+          New login page breaks login theme plugin.
+      - type: bug
+        category: regression
+        pull: 8322
+        issue: 71744
+        authors:
+          - mawinter69
+        pr_title: "[JENKINS-71744] Fix context menu"
+        message: |-
+          Fix "Manage Jenkins" context menu (regression in 2.415).
+      - type: bug
+        category: bug
+        pull: 8324
+        authors:
+          - takashiharano
+        pr_title: Fix mistranslation of  noPrincipal_ja.properties
+        message: |-
+          Fix mistranslation of Japanese message in mailing list reference.
+
+  # pull: 8285 (PR title: Minor Improvement: Add Java 20 version to assertJavaCheckPasses() in war>src>test )
+  # pull: 8318 (PR title: Bump com.google.guava:guava from 32.1.1-jre to 32.1.2-jre)
+  # pull: 8320 (PR title: Add French translations for Rename panel)
+  # pull: 8323 (PR title: Update dependency org.apache.maven:maven-core to v3.9.4)
+  # pull: 8325 (PR title: Update dependency sass to v1.64.2)
+  # pull: 8327 (PR title: Bump org.jenkins-ci.plugins:matrix-project from 789.v57a_725b_63c79 to 802.v8013b_40c7edc)
+  # pull: 8328 (PR title: Bump org.jenkins-ci.plugins:mailer from 457.v3f72cb_e015e5 to 463.vedf8358e006b_)
+  # pull: 8329 (PR title: Bump org.jenkins-ci.plugins:script-security from 1251.vfe552ed55f8d to 1264.vecf66020eb_7d)
+  # pull: 8330 (PR title: Bump org.jenkins-ci.plugins:antisamy-markup-formatter from 159.v25b_c67cd35fb_ to 162.v0e6ec0fcfcf6)
+  # pull: 8333 (PR title: Update jenkins/ath Docker tag to v5686)
+  # pull: 8334 (PR title: Update dependency handlebars to v4.7.8)
+  # pull: 8335 (PR title: Update dependency hotkeys-js to v3.12.0)
+  # pull: 8336 (PR title: Update dependency lit to v2.8.0)
+  # pull: 8337 (PR title: Update dependency prettier to v3.0.1)
+  # pull: 8338 (PR title: Update dependency eslint-config-prettier to v8.10.0)
+  # pull: 8342 (PR title: Bump io.jenkins.plugins:commons-text-api from 1.10.0-36.vc008c8fcda_7b_ to 1.10.0-68.v0d0b_c439292b_)
+  # pull: 8343 (PR title: Bump org.jenkins-ci.plugins:display-url-api from 2.3.7 to 2.3.8)
+  # pull: 8346 (PR title: Bump org.jenkins-ci:jenkins from 1.103 to 1.104)
 
 # DO NOT EDIT THIS FILE DIRECTLY ON GITHUB IF YOU HAVE COMMIT ACCESS
 # ALL CHANGES MUST GO THROUGH PULL REQUESTS
